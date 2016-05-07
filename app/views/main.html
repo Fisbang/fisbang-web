@@ -1,0 +1,167 @@
+			<div class="main-header clearfix">
+				<div class="page-title">
+					<h3 class="no-margin">Dashboard</h3>
+					<span>Welcome back {{ user.name }}</span>
+				</div><!-- /page-title -->
+				
+				<ul class="page-stats">
+			    	<li>
+			    		<div class="value">
+			    			<span>My Energy</span>
+			    			<h4 id="currentEnergy">{{ currentEnergy }}</h4>
+			    		</div>
+					<span id="energy" class="sparkline"></span>
+			    	</li>
+			    	<li>
+			    		<div class="value">
+			    			<span>My balance</span>
+			    			<h4>Rp<strong id="currentBalance">{{ currentBalance }}</strong></h4>
+			    		</div>
+			    		<span id="balances" class="sparkline"></span>
+			    	</li>
+			    </ul><!-- /page-stats -->
+			</div><!-- /main-header -->
+			<div class="padding-md">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="panel panel-default">
+							<div class="panel-heading clearfix">
+								<span class="pull-left"> Total Energy <span class="label label-danger m-left-xs">{{ mainPower.status }}</span></span>
+								<ul class="tool-bar">
+									<li><a href="#" class="refresh-widget" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="ON/OFF"><i class="fa fa-power-off"></i></a></li>
+									<li><a href="#" class="refresh-widget" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a></li>
+								</ul>
+							</div>
+							<div class="panel-body" id="energyWidget">
+                                                                <flot dataset="mainEnergyData" options="mainEnergyOptions" height="250px" on-plot-click="mainEnergyClick(event, pos, item)" on-plot-hover="mainEnergyHover(event, pos, item)"></flot>
+							</div>
+							<div class="panel-footer">
+								<div class="row row-merge">
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ todayHour }}</h4>
+										<small class="text-muted">hours today</small>
+									</div>
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ todayEnergy }}</h4>
+										<small class="text-muted">kWh for today</small>
+									</div>
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ todayDay }}</h4>
+										<small class="text-muted">days this month</small>
+									</div>
+									<div class="col-xs-3 text-center">
+										<h4 class="no-margin">{{ monthlyEnergy }}</h4>
+										<small class="text-muted">Kwh for this month</small>
+									</div>
+								</div><!-- ./row -->
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div><!-- /panel -->
+                                                
+						<div class="panel panel-default" ng-repeat="device in devices">
+							<div class="panel-heading clearfix">
+								<span class="pull-left">{{ device.name }} <span class="label label-danger m-left-xs">{{ device.status }}</span></span>
+								<ul class="tool-bar">
+									<li><a href="#" class="refresh-widget" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="ON/OFF"><i class="fa fa-power-off"></i></a></li>
+									<li><a href="#" class="refresh-widget" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Refresh"><i class="fa fa-refresh"></i></a></li>
+								</ul>
+							</div>
+							<div class="panel-body" id="trafficWidget">
+                                                          <flot dataset="device.Data" options="device.Options" height="250px" on-plot-click="mainEnergyClick(event, pos, item)" on-plot-hover="mainEnergyHover(event, pos, item)"></flot>
+							</div>
+							<div class="panel-footer">
+								<div class="row row-merge">
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ todayHour }}</h4>
+										<small class="text-muted">hours today</small>
+									</div>
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ device.todayEnergy }}</h4>
+										<small class="text-muted">kWh for today</small>
+									</div>
+									<div class="col-xs-3 text-center border-right">
+										<h4 class="no-margin">{{ todayDay }}</h4>
+										<small class="text-muted">days this month</small>
+									</div>
+									<div class="col-xs-3 text-center">
+										<h4 class="no-margin">{{ device.monthlyEnergy }}</h4>
+										<small class="text-muted">Kwh for this month</small>
+									</div>
+								</div><!-- ./row -->
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div><!-- /panel -->						
+					</div><!-- /.col -->
+
+					<div class="col-sm-6 col-md-4">
+						<div class="panel-stat3 bg-success">
+							<h2 class="m-top-none" id="todayEnergy">{{ todayEnergy }}</h2>
+							<h5>Today's Energy</h5>
+							<i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">5% Higher than last week</span>
+							<div class="stat-icon">
+								<i class="fa fa-flash fa-3x"></i>
+							</div>
+							<div class="refresh-button">
+								<i class="fa fa-refresh"></i>
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div>
+					</div><!-- /.col -->
+					<div class="col-sm-6 col-md-4">
+						<div class="panel-stat3 bg-success">
+							<h2 class="m-top-none"><span id="energyPercentage">{{ energyPercentage }}</span>%</h2>
+							<h5>Power Capacity</h5>
+							<i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">10% Higher than last week</span>
+							<div class="stat-icon">
+								<i class="fa fa-hdd-o fa-3x"></i>
+							</div>
+							<div class="refresh-button">
+								<i class="fa fa-refresh"></i>
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div>
+					</div><!-- /.col -->
+					<div class="col-sm-6 col-md-4">
+						<div class="panel-stat3 bg-danger">
+							<h2 class="m-top-none" id="todayBalance">{{ todayBalance }}</h2>
+							<h5>Today Balance (Rp)</h5>
+							<i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">15% Higher than last week</span>
+							<div class="stat-icon">
+								<i class="fa fa-bar-chart-o fa-3x"></i>
+							</div>
+							<div class="refresh-button">
+								<i class="fa fa-refresh"></i>
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div>
+					</div><!-- /.col -->
+					<div class="col-sm-6 col-md-4">
+						<div class="panel-stat3 bg-danger">
+							<h2 class="m-top-none"><span id="balancePercentage">{{ balancePercentage }}</span>%</h2>
+							<h5>From Max Budget</h5>
+							<i class="fa fa-arrow-circle-o-up fa-lg"></i><span class="m-left-xs">3% Higher than last week</span>
+							<div class="stat-icon">
+								<i class="fa fa-shopping-cart fa-3x"></i>
+							</div>
+							<div class="refresh-button">
+								<i class="fa fa-refresh"></i>
+							</div>
+							<div class="loading-overlay">
+								<i class="loading-icon fa fa-refresh fa-spin fa-lg"></i>
+							</div>
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.padding-md -->
+
+        <script src="scripts/dashboard.js"></script>

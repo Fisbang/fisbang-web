@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="styles/app-skin.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body class="overflow-hidden" ng-app="fisbangWebApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+	<!-- Overlay Div -->
+	<div id="overlay" class="transparent"></div>
+
+	<div id="wrapper" class="preload">
+
+		<!--top nav / header-->
+		<div id="top-nav" class="fixed">
+			<button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<button type="button" class="navbar-toggle pull-left hide-menu" id="menuToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="brand">
+				<img src="images/logo_fisbang.png" href="homepage.html">
+				<span> Company Name </span>
+			</div><!-- /brand -->	
+			<ul class="nav-notification clearfix">
+				<li class="profile dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<span>John Doe</span>
+						<span><i class="fa fa-chevron-down"></i></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="clearfix" href="#">
+								<img src="images/user-demo.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>John Doe</strong>
+									<p class="grey">John_Doe@email.com</p> 
+								</div>
+							</a>
+						</li>
+						<li><a tabindex="-1" href="profile.html" class="main-link"><i class="fa fa-desktop fa-lg"></i> Dashboard</a></li>
+						<li><a tabindex="-1" href="gallery.html" class="main-link"><i class="fa fa-globe fa-lg"></i> Fisbang.com</a></li>
+						<li><a tabindex="-1" href="#" class="theme-setting"><i class="fa fa-cog fa-lg"></i> Setting</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i class="fa fa-lock fa-lg"></i> Log out</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /top-nav-->
+		
+		<!-- aside -->
+		<aside class="fixed">
+			<div class="sidebar-inner scrollable-sidebar">
+				<div class="user-block clearfix">
+					<img src="images/user-demo.jpg" alt="User Avatar">
+					<div class="detail">
+						<span class="user">John Doe</span>
+						<ul class="list-inline">
+							<li><a href="profile.html">Profile</a></li>
+							<li><a href="inbox.html" class="no-margin">Inbox</a></li>
+						</ul>
+					</div>
+				</div><!-- /user-block -->
+				<div class="main-menu">
+					<ul>
+	                    <li class="active">
+							<a href="index.html">
+								<span class="menu-icon">
+									<i class="fa fa-desktop fa-lg"></i> 
+								</span>
+								<span class="text">
+									Dashboard
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="savings.html">
+								<span class="menu-icon">
+									<i class="fa fa-bar-chart-o fa-lg"></i> 
+								</span>
+								<span class="text">
+									Savings
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>						
+						<li>
+							<a href="building.html">
+								<span class="menu-icon">
+									<i class="fa fa-building-o fa-lg"></i> 
+								</span>
+								<span class="text">
+									Building
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="market.html">
+								<span class="menu-icon">
+									<i class="fa fa-shopping-cart fa-lg"></i> 
+								</span>
+								<span class="text">
+									Market
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="setting.html">
+								<span class="menu-icon">
+									<i class="fa fa-cog fa-lg"></i> 
+								</span>
+								<span class="text">
+									Setting
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+					</ul>
+					
+					<div class="alert alert-info">
+						Welcome fisbang admin. Optimize your building day by day 
+					</div>
+				</div><!-- /main-menu -->
+			</div><!-- /sidebar-inner -->
+		</aside><!-- /aside -->
+
+		<!-- main-container -->
+		<div id="main-container" ng-view>
+		</div><!-- /main-container -->
+		
+		<!-- footer -->
+		<footer>
+			<div class="row">
+				<div class="col-sm-6">
+					<p class="no-margin">
+						&copy; 2015 <strong>Fisbang</strong> Mail : contact@fisbang.com
+					</p>
+				</div><!-- /.col -->
+			</div><!-- /.row-->
+		</footer><!-- /footer -->
+		
+		<!--Modal-->
+		<div class="modal fade" id="newFolder">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4>Create new folder</h4>
+      				</div>
+				    <div class="modal-body">
+				        <form>
+							<div class="form-group">
+								<label for="folderName">Folder Name</label>
+								<input type="text" class="form-control input-sm" id="folderName" placeholder="Folder name here...">
+							</div>
+						</form>
+				    </div>
+				    <div class="modal-footer">
+				        <button class="btn btn-sm btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
+						<a href="#" class="btn btn-danger btn-sm">Save changes</a>
+				    </div>
+			  	</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+	</div><!-- /wrapper -->
+
+	<a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
+	
+	<!-- Logout confirmation -->
+	<div class="custom-popup width-100" id="logoutConfirm">
+		<div class="padding-md">
+			<h4 class="m-top-none"> Do you want to logout?</h4>
+		</div>
+
+		<div class="text-center">
+			<a class="btn btn-success m-right-sm" href="login.html">Logout</a>
+			<a class="btn btn-danger logoutConfirm_close">Cancel</a>
+		</div>
+	</div>
+
+    
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+    <script src="bower_components/Flot/jquery.flot.js"></script>
+    <script src="bower_components/eve/eve.js"></script>
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
+    <script src="bower_components/morris.js/morris.js"></script>
+    <script src="bower_components/jquery-colorbox/jquery.colorbox.js"></script>
+    <script src="bower_components/PACE/pace.js"></script>
+    <script src="bower_components/jquery-popup-overlay/index.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="bower_components/angular-flot/angular-flot.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/angular-basicauth/angular-basicauth.js"></script>
+    <script src="bower_components/flot-basic/jquery.flot.js"></script>
+    <script src="bower_components/flot-basic/jquery.flot.time.js"></script>
+    <script src="bower_components/flot-basic/jquery.flot.canvas.js"></script>
+    <script src="bower_components/flot-basic/excanvas.min.js"></script>
+    <script src="bower_components/flot-basic/jquery.flot.axislabels.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="bower_components/jquery-popup-overlay/jquery.popupoverlay.js"></script>
+    <script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
+    <script src="bower_components/modernizer/modernizr.js"></script>
+    <script src="bower_components/sparkline/dist/jquery.sparkline.js"></script>
+
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/base.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
