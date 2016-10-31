@@ -28,34 +28,6 @@ angular.module('fisbangWebApp')
         $scope.balancePercentage = 80;
 
         $scope.devices = [];
-        // $scope.devices = [
-        //     {
-        //         id: 1,
-        //         name: "Television",
-        //         status: "CONNECTED",
-        //         todayEnergy: 123,
-        //         monthlyEnergy: 123 * $scope.todayDay,
-        //         Options: {
-        //             series: {
-        //                 lines: {
-        //                     show: true, 
-        //                     fill: true,
-        //                     fillColor: 'rgba(121,206,167,0.2)'
-        //                 },
-        //                 points: {
-        //                     show: true,
-        //                     radius: '4.5'
-        //                 }
-        //             },
-        //             grid: {
-        //                 hoverable: true,
-        //                 clickable: true
-        //             },
-        //             colors: ["#37b494"]
-        //         },
-        //         Data: [{ data: [[0, 5], [1, 8], [2, 5], [3, 8], [4, 7], [5,9], [6, 8], [7, 8], [8, 10], [9, 12], [10, 10]], label: 'Energy' }]
-        //     }
-        // ];
 
         $scope.mainEnergyData = [{ data: [[0, 5], [1, 8], [2, 5], [3, 8], [4, 7], [5,9], [6, 8], [7, 8], [8, 10], [9, 12], [10, 10]], label: 'Energy' }];
         $scope.mainEnergyOptions = {
@@ -168,37 +140,7 @@ angular.module('fisbangWebApp')
                     }
 
                     $log.log($scope.devices);
-                    
-                    
-        // $scope.devices = [
-        //     {
-        //         id: 1,
-        //         name: "Television",
-        //         status: "CONNECTED",
-        //         todayEnergy: 123,
-        //         monthlyEnergy: 123 * $scope.todayDay,
-        //         Options: {
-        //             series: {
-        //                 lines: {
-        //                     show: true, 
-        //                     fill: true,
-        //                     fillColor: 'rgba(121,206,167,0.2)'
-        //                 },
-        //                 points: {
-        //                     show: true,
-        //                     radius: '4.5'
-        //                 }
-        //             },
-        //             grid: {
-        //                 hoverable: true,
-        //                 clickable: true
-        //             },
-        //             colors: ["#37b494"]
-        //         },
-        //         Data: [{ data: [[0, 5], [1, 8], [2, 5], [3, 8], [4, 7], [5,9], [6, 8], [7, 8], [8, 10], [9, 12], [10, 10]], label: 'Energy' }]
-        //     }
-        // ];
-                    
+                                        
                 }).error(function(response){
                     $log.log("error");
                 });
