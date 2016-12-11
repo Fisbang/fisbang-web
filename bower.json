@@ -25,7 +25,8 @@
     "angular-flot": "^0.0.16",
     "angular-basicauth": "^0.3.0",
     "flot-basic": "flot-time-axislabels#*",
-    "font-awesome": "fontawesome#^4.7.0"
+    "font-awesome": "fontawesome#^4.7.0",
+    "components-font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
