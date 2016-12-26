@@ -58,7 +58,7 @@ angular.module('fisbangWebApp')
 			var x = item.datapoint[0],
 				y = item.datapoint[1];
 			
-				$("#tooltip").html("Energy : " + y)
+				$("#tooltip").html("Main Power : " + y)
 				.css({top: item.pageY+5, left: item.pageX+5})
 				.fadeIn(200);
 		} else {
@@ -112,10 +112,11 @@ angular.module('fisbangWebApp')
                                     hoverable: true,
                                     clickable: true
                                 },
-                                colors: ["#37b494"]
-                                // xaxis: {
-                                //     mode: "time"
-                                // }
+                                colors: ["#37b494"],
+                                xaxis: {
+                                    mode: "time",
+                                    timeformat: "%H:%M"
+                                }
                             },
                             Data: []
                         }
@@ -125,14 +126,14 @@ angular.module('fisbangWebApp')
                         var device = $scope.devices[i];
                         $log.log(device.sensors);
                         for(var j=0; j<device.sensors.length; j++) {
-                            $http.get('http://app.fisbang.com/api/sensor/'+device.sensors[j]+'/data?limit=100').success(function(response){
+                            $http.get('http://app.fisbang.com/api/sensor/'+device.sensors[j]+'/data?resample=H&limit=24').success(function(response){
                                 $log.log(response);
                                 var data = [];
                                 for(var k=0;k<response.length; k++) {
                                     //data.push([response[k].timestamp, response[k].value]);
-                                    data.push([k, response[k].value]);
+                                    data.push([response[k].timestamp*1000 + 25200000, response[k].value]);
                                 }
-                                device.Data.push({ data: data, label: 'Energy' });
+                                device.Data.push({ data: data, label: 'Main Power (W)' });
                             }).error(function(response){
                                 $log.log(response);
                             });

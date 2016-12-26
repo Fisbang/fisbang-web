@@ -38,6 +38,8 @@ module.exports = function(config) {
       'bower_components/jquery-colorbox/jquery.colorbox.js',
       'bower_components/PACE/pace.js',
       'bower_components/jquery-popup-overlay/index.js',
+      'bower_components/slimScroll/jquery.slimscroll.js',
+      'bower_components/slimScroll/jquery.slimscroll.min.js',
       'bower_components/jquery.cookie/jquery.cookie.js',
       'bower_components/angular-flot/angular-flot.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
