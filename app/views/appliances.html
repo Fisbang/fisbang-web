@@ -1,0 +1,19 @@
+<div ng-controller="AppliancesCtrl">
+  <form ng-submit="createAppliance()">
+    <input type="text" ng-model="applianceName" name="name" />
+    <input type="submit" id="submit" value="Create Appliance" />
+    <pre>appliances: {{appliances}}</pre>
+  
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+      </tr>
+      <tr ng-repeat="appliance in appliances">
+        <td>{{ appliance.id }}</td>
+        <td>{{ appliance.name }}</td>
+      </tr>
+    </table>
+  </form>
+
+</div>
