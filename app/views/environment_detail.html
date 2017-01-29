@@ -1,15 +1,13 @@
 <div ng-controller="EnvironmentDetailCtrl">
-  <table>
-    <tr>
-      <td>Name</td>
-      <td>{{ environment.name }}</td>
-    </tr>
-    <tr>
-      <td>Parent Environment</td>
-      <td><span ng-click="toDetail(environment.parentId)">{{ environment.parent.name }}</span></td>
-    </tr>
-  </table>
-  <span ng-click="deleteEnvironment()">Delete</span>
+  <form ng-submit="updateEnvironment()">
+    <input type="text" ng-model="environment.name" name="name" />
+    <select ng-model="environment.parent" ng-options="option.name for option in environments track by option.id">
+      <!-- <option ng-repeat="env in environments" ng-value="{{env.id}}">{{env.name}}</option> -->
+    </select>
+    <button type="submit" id="submit">Update</button>
+    <button ng-click="deleteEnvironment()">Delete</button>
+  </form>
+
 
   <div>
     <span>Appliances</span>
@@ -19,6 +17,18 @@
       </tr>
       <tr ng-repeat="appliance in environment.appliances">
         <td><span ng-click="toApplianceDetail(appliance.id)">{{ appliance.name }}</span></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div>
+    <span>Devices</span>
+    <table border="1">
+      <tr>
+        <td>Token</td>
+      </tr>
+      <tr ng-repeat="device in environment.devices">
+        <td><span ng-click="toDeviceDetail(device.id)">{{ device.token }}</span></td>
       </tr>
     </table>
   </div>

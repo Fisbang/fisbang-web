@@ -11,6 +11,22 @@ angular.module('fisbangWebApp')
     .controller('EnvironmentDetailCtrl', ['$scope', '$routeParams','$log', '$http', '$location', function ($scope, $routeParams, $log, $http, $location) {
         var environmentId = $routeParams.environmentId;
 
+        $scope.environments = [];
+        $http.get('http://localhost:8081/environments').then(
+            function(response){
+                $log.log(response.data[0]);
+                for(var i=0; i< response.data.length; i++){
+                    $log.log(response.data[i]);
+                    var environment = response.data[i]
+                    $log.log($scope.environments);
+                    $scope.environments[i] = environment;
+                };
+                $log.log("Environments =" + $scope.environments);
+            },
+            function(error){
+                $log.log("error");
+            });
+
         $http.get('http://localhost:8081/environments/'+environmentId).then(
             function(response){
                 $scope.environment = response.data;
@@ -37,7 +53,16 @@ angular.module('fisbangWebApp')
                         function(error){
                             $log.log("error");
                         });
-                
+
+                $http.get('http://localhost:8081/environments/'+environmentId+'/devices').then(
+                        function(response){
+                            $scope.environment.devices = response.data
+                            $log.log("Got Devices:" + $scope.environment.devices);
+                        },
+                        function(error){
+                            $log.log("error");
+                        });
+
                 $log.log("Environment =" + $scope.environment);
             },
             function(error){
@@ -52,6 +77,21 @@ angular.module('fisbangWebApp')
                     function(response){
                         $log.log("environments deleted");
                         $scope.toEnvironmentList();
+                    },
+                    function(error){
+                        $log.log("error delete environment");
+                    }
+                );
+            };
+        }
+        
+        $scope.updateEnvironment = function() {
+            $log.log("Update environment" + $scope.environment.id);
+            if ($scope.environment) {
+                $scope.environment.parentId = $scope.environment.parent.id;
+                $http.put('http://localhost:8081/environments/'+$scope.environment.id, $scope.environment).then(
+                    function(response){
+                        $log.log("environments update");
                     },
                     function(error){
                         $log.log("error delete environment");
