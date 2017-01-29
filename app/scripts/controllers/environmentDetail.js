@@ -28,6 +28,16 @@ angular.module('fisbangWebApp')
                             $log.log("error");
                         });
                 }
+
+                $http.get('http://localhost:8081/environments/'+environmentId+'/appliances').then(
+                        function(response){
+                            $scope.environment.appliances = response.data
+                            $log.log("Got Appliances:" + $scope.environment.appliances);
+                        },
+                        function(error){
+                            $log.log("error");
+                        });
+                
                 $log.log("Environment =" + $scope.environment);
             },
             function(error){
@@ -48,6 +58,18 @@ angular.module('fisbangWebApp')
                     }
                 );
             };
+        }
+
+        $scope.toDetail = function(environmentId) {
+            $log.log(environmentId);
+            var new_location = '/environment/' + environmentId;
+            $location.path(new_location);
+        }
+
+        $scope.toApplianceDetail = function(applianceId) {
+            $log.log(applianceId);
+            var new_location = '/appliance/' + applianceId;
+            $location.path(new_location);
         }
 
         $scope.toEnvironmentList = function() {

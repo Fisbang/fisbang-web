@@ -6,9 +6,21 @@
     </tr>
     <tr>
       <td>Parent Environment</td>
-      <td>{{ environment.parent.name }}</td>
+      <td><span ng-click="toDetail(environment.parentId)">{{ environment.parent.name }}</span></td>
     </tr>
   </table>
   <span ng-click="deleteEnvironment()">Delete</span>
-  <span ng-click="toEnvironmentList()">Back</span>
+
+  <div>
+    <span>Appliances</span>
+    <table border="1">
+      <tr>
+        <td>Name</td>
+      </tr>
+      <tr ng-repeat="appliance in environment.appliances">
+        <td><span ng-click="toApplianceDetail(appliance.id)">{{ appliance.name }}</span></td>
+      </tr>
+    </table>
+  </div>
+
 </div>

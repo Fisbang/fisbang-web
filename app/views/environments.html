@@ -7,14 +7,14 @@
     <input type="submit" id="submit" value="Create Environment" />
     <pre>environments: {{environments}}</pre>
   
-    <table>
+    <table border="1">
       <tr>
         <td>Name</td>
         <td>Parent Environment</td>
       </tr>
       <tr ng-repeat="environment in environments">
         <td><span ng-click="toDetail(environment.id)">{{ environment.name }}</span></td>
-        <td>{{ environment.parent.name }}</td>
+        <td><span ng-click="toDetail(environment.parentId)">{{ environment.parent.name }}</span></td>
       </tr>
     </table>
   </form>
