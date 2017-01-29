@@ -8,7 +8,7 @@
  * Controller of the fisbangWebApp
  */
 angular.module('fisbangWebApp')
-    .controller('AppliancesCtrl', ['$scope','$log', '$http', function ($scope, $log, $http) {
+    .controller('AppliancesCtrl', ['$scope','$log', '$http', '$location', function ($scope, $log, $http, $location) {
         $scope.appliances = [];
         
         $http.get('http://localhost:8081/appliances').then(
@@ -50,5 +50,10 @@ angular.module('fisbangWebApp')
                 $log.log($scope.appliances);
                 $scope.applianceName = '';
             };
+        }
+
+        $scope.toDetail = function(applianceId) {
+            var new_location = '/appliance/' + applianceId;
+            $location.path(new_location);
         }
     }]);

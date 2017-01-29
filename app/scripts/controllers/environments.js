@@ -8,7 +8,7 @@
  * Controller of the fisbangWebApp
  */
 angular.module('fisbangWebApp')
-    .controller('EnvironmentsCtrl', ['$scope','$log', '$http', function ($scope, $log, $http) {
+    .controller('EnvironmentsCtrl', ['$scope','$log', '$http', '$location', function ($scope, $log, $http, $location) {
         $scope.environments = [];
         var lookup = {};
         
@@ -71,4 +71,11 @@ angular.module('fisbangWebApp')
                 $scope.environmentName = '';
             };
         }
+
+        $scope.toDetail = function(environmentId) {
+            $log.log(environmentId);
+            var new_location = '/environment/' + environmentId;
+            $location.path(new_location);
+        }
+
     }]);

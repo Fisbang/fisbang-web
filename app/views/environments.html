@@ -9,14 +9,12 @@
   
     <table>
       <tr>
-        <td>ID</td>
-        <td>Parent ID</td>
         <td>Name</td>
+        <td>Parent Environment</td>
       </tr>
       <tr ng-repeat="environment in environments">
-        <td>{{ environment.id }}</td>
+        <td><span ng-click="toDetail(environment.id)">{{ environment.name }}</span></td>
         <td>{{ environment.parent.name }}</td>
-        <td>{{ environment.name }}</td>
       </tr>
     </table>
   </form>
