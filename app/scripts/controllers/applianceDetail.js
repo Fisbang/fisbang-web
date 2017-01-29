@@ -15,7 +15,15 @@ angular.module('fisbangWebApp')
             function(response){
                 $scope.appliance = response.data;
                 $scope.appliance.id = applianceId;
-                $log.log("Appliance =" + $scope.appliance);
+                $http.get('http://localhost:8081/environments/'+$scope.appliance.environmentId).then(
+                    function(response){
+                        $scope.appliance.environment = response.data;
+                        $scope.appliance.environment.id = $scope.appliance.environmentId;
+                        $log.log("Appliance =" + $scope.appliance);
+                    },
+                    function(error){
+                        $log.log("error");
+                    });
             },
             function(error){
                 $log.log("error");
@@ -40,4 +48,10 @@ angular.module('fisbangWebApp')
         $scope.toApplianceList = function() {
             $location.path('appliances');            
         }
+
+        $scope.toEnvironmentDetail = function(environmentId) {
+            var new_location = '/environment/' + environmentId;
+            $location.path(new_location);
+        }
+
     }]);

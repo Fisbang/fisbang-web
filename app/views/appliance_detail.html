@@ -4,7 +4,10 @@
       <td>Name</td>
       <td>{{ appliance.name }}</td>
     </tr>
+    <tr>
+      <td>Environment</td>
+      <td><span ng-click="toEnvironmentDetail(appliance.environmentId)">{{ appliance.environment.name }}</span></td>
+    </tr>
   </table>
   <span ng-click="deleteAppliance()">Delete</span>
-  <span ng-click="toApplianceList()">Back</span>
 </div>

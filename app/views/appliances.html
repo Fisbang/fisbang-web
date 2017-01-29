@@ -1,15 +1,20 @@
 <div ng-controller="AppliancesCtrl">
   <form ng-submit="createAppliance()">
     <input type="text" ng-model="applianceName" name="name" />
+    <select ng-model="applianceEnvironmentId">
+      <option ng-repeat="environment in environments" value={{environment.id}}>{{environment.name}}</option>
+    </select>
     <input type="submit" id="submit" value="Create Appliance" />
     <pre>appliances: {{appliances}}</pre>
   
-    <table>
+    <table border="1">
       <tr>
         <td>Name</td>
+        <td>Environment</td>
       </tr>
       <tr ng-repeat="appliance in appliances">
         <td><span ng-click="toDetail(appliance.id)">{{ appliance.name }}</span></td>
+        <td><span ng-click="toEnvironmentDetail(appliance.environmentId)">{{ appliance.environment.name }}</span></td>
       </tr>
     </table>
   </form>
