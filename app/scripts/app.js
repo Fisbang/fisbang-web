@@ -36,6 +36,11 @@ angular
         controller: 'AppliancesCtrl',
         controllerAs: 'appliances'
       })
+      .when('/environments', {
+        templateUrl: 'views/environments.html',
+        controller: 'EnvironmentsCtrl',
+        controllerAs: 'environments'
+      })
       .otherwise({
         redirectTo: '/'
       });

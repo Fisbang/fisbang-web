@@ -1,0 +1,24 @@
+<div ng-controller="EnvironmentsCtrl">
+  <form ng-submit="createEnvironment()">
+    <input type="text" ng-model="environmentName" name="name" />
+    <select ng-model="environmentParentId">
+      <option ng-repeat="environment in environments" value="{{environment.id}}">{{environment.name}}</option>
+    </select>
+    <input type="submit" id="submit" value="Create Environment" />
+    <pre>environments: {{environments}}</pre>
+  
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>Parent ID</td>
+        <td>Name</td>
+      </tr>
+      <tr ng-repeat="environment in environments">
+        <td>{{ environment.id }}</td>
+        <td>{{ environment.parent.name }}</td>
+        <td>{{ environment.name }}</td>
+      </tr>
+    </table>
+  </form>
+
+</div>
