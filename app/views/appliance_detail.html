@@ -1,13 +1,23 @@
 <div ng-controller="ApplianceDetailCtrl">
-  <table>
-    <tr>
-      <td>Name</td>
-      <td>{{ appliance.name }}</td>
-    </tr>
-    <tr>
-      <td>Environment</td>
-      <td><span ng-click="toEnvironmentDetail(appliance.environmentId)">{{ appliance.environment.name }}</span></td>
-    </tr>
-  </table>
-  <span ng-click="deleteAppliance()">Delete</span>
+  <form ng-submit="updateAppliance()">
+    <input type="text" ng-model="appliance.name" name="name" />
+    <select ng-model="appliance.environment" ng-options="option.name for option in environments track by option.id">
+      <!-- <option ng-repeat="env in environments" ng-value="{{env.id}}">{{env.name}}</option> -->
+    </select>
+    <button type="submit" id="submit">Update</button>
+    <button ng-click="deleteAppliance()">Delete</button>
+  </form>
+
+  <div>
+    <span>Devices</span>
+    <table border="1">
+      <tr>
+        <td>Token</td>
+      </tr>
+      <tr ng-repeat="device in appliance.devices">
+        <td><span ng-click="toDeviceDetail(device.id)">{{ device.token }}</span></td>
+      </tr>
+    </table>
+  </div>
+
 </div>
