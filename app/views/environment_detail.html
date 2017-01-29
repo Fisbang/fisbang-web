@@ -1,0 +1,14 @@
+<div ng-controller="EnvironmentDetailCtrl">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>{{ environment.name }}</td>
+    </tr>
+    <tr>
+      <td>Parent Environment</td>
+      <td>{{ environment.parent.name }}</td>
+    </tr>
+  </table>
+  <span ng-click="deleteEnvironment()">Delete</span>
+  <span ng-click="toEnvironmentList()">Back</span>
+</div>

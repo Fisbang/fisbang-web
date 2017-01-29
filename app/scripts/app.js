@@ -36,10 +36,20 @@ angular
         controller: 'AppliancesCtrl',
         controllerAs: 'appliances'
       })
+      .when('/appliance/:applianceId', {
+        templateUrl: 'views/appliance_detail.html',
+        controller: 'ApplianceDetailCtrl',
+        controllerAs: 'appliance_detail'
+      })
       .when('/environments', {
         templateUrl: 'views/environments.html',
         controller: 'EnvironmentsCtrl',
         controllerAs: 'environments'
+      })
+      .when('/environment/:environmentId', {
+        templateUrl: 'views/environment_detail.html',
+        controller: 'EnvironmentDetailCtrl',
+        controllerAs: 'environment_detail'
       })
       .otherwise({
         redirectTo: '/'
