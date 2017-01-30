@@ -51,6 +51,16 @@ angular
         controller: 'EnvironmentDetailCtrl',
         controllerAs: 'environment_detail'
       })
+      .when('/devices', {
+        templateUrl: 'views/devices.html',
+        controller: 'DevicesCtrl',
+        controllerAs: 'devices'
+      })
+      .when('/device/:deviceId', {
+        templateUrl: 'views/device_detail.html',
+        controller: 'DeviceDetailCtrl',
+        controllerAs: 'device_detail'
+      })
       .otherwise({
         redirectTo: '/'
       });

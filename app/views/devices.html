@@ -1,0 +1,17 @@
+<div ng-controller="DevicesCtrl">
+  <form ng-submit="createDevice()">
+    <input type="text" ng-model="deviceToken" name="name" />
+    <input type="submit" id="submit" value="Create Device" />
+    <pre>devices: {{devices}}</pre>
+  
+    <table border="1">
+      <tr>
+        <td>Token</td>
+      </tr>
+      <tr ng-repeat="device in devices">
+        <td><span ng-click="toDetail(device.id)">{{ device.token }}</span></td>
+      </tr>
+    </table>
+  </form>
+
+</div>
