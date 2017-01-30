@@ -55,6 +55,69 @@ angular.module('fisbangWebApp')
                 $log.log("error");
             });
 
+        $scope.devices = [];
+        $scope.available_devices = [];
+        $http.get('http://localhost:8081/devices').then(
+            function(response){
+                for(var i=0; i< response.data.length; i++){
+                    $log.log(response.data[i]);
+                    var device = response.data[i];
+                    $log.log($scope.devices);
+                    $scope.devices[i] = device;
+                    if (device.environmentId == null && device.applianceId == null) {
+                        $scope.available_devices.push(device);
+                    }
+                };
+                $log.log("Devices =" + $scope.devices);
+            },
+            function(error){
+                $log.log("error");
+            });                
+
+        $scope.addDevice = function() {
+            $log.log("Add device to appliance" + $scope.appliance.id);
+            if ($scope.newDevice) {
+                var newDeviceId = $scope.newDevice.id;
+                $http.post('http://localhost:8081/appliances/'+$scope.appliance.id+'/devices', $scope.newDevice).then(
+                    function(response){
+                        $log.log("device added");
+                        $scope.appliance.devices = response.data;
+                        for(var i = $scope.available_devices.length - 1; i >= 0; i--) {
+                            if($scope.available_devices[i].id === newDeviceId) {
+                                $scope.available_devices.splice(i, 1);
+                            }
+                            $log.log($scope.available_devices);
+                        }
+                    },
+                    function(error){
+                        $log.log("error add device");
+                    }
+                );
+            };
+
+
+            $scope.newDevice = null;
+        }
+
+        $scope.removeDevice = function(device) {
+            $log.log("Remove device from appliance" + $scope.appliance.id);
+            $log.log("device : " + device.id);
+            if (device.id) {
+                
+                $http.delete('http://localhost:8081/appliances/'+$scope.appliance.id+'/devices/' + device.id).then(
+                    function(response){
+                        $log.log("device removed");
+                        $scope.appliance.devices = response.data;
+                        $scope.available_devices.push(device);
+                    },
+                    function(error){
+                        $log.log("error remove device");
+                    }
+                );
+            };
+                
+        }
+
         $scope.deleteAppliance = function() {
             $log.log("Delete appliance" + $scope.appliance.id);
             if ($scope.appliance) {

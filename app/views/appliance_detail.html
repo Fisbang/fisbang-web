@@ -9,13 +9,20 @@
   </form>
 
   <div>
+    <form ng-submit="addDevice()">
+      <select ng-model="newDevice" ng-options="option.token for option in available_devices track by option.id">
+      </select>
+      <button type="submit" id="submit">Update</button>
+    </form>
+    
     <span>Devices</span>
+    <pre>devices: {{appliance.devices}}</pre>
     <table border="1">
       <tr>
         <td>Token</td>
       </tr>
       <tr ng-repeat="device in appliance.devices">
-        <td><span ng-click="toDeviceDetail(device.id)">{{ device.token }}</span></td>
+        <td><span ng-click="toDeviceDetail(device.id)">{{ device.token }}</span><span ng-click="removeDevice(device)">Remove</span></td>
       </tr>
     </table>
   </div>
